@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
         }
       })
       .catch(error => {
-        res.status(500).json({message: 'Error: could not access data'});
+        res.status(500).json({message: 'Error'});
       })
   });
 
@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
           res.status(200).json(project);
       })
       .catch(error => {
-        res.status(500).json({message: 'Error: could not access data'});
+        res.status(500).json({message: 'Error'});
       })
   });
 
@@ -32,7 +32,27 @@ router.get('/', (req, res) => {
           res.status(200).json(project);
       })
       .catch(error => {
-        res.status(500).json({message: 'Error: could not access data'});
+        res.status(500).json({message: 'Error'});
+      })
+  });
+
+  router.put('/:id', (req, res) => {
+      projectsDb.update(req.params.id, req.body)
+      .then(update => {
+          res.status(200).json(update);
+      })
+      .catch(error => {
+        res.status(500).json({message: 'Error'});
+      })
+  });
+
+  router.delete('/:id', (req, res) => {
+      projectsDb.remove(req.params.id)
+      .then(remove => {
+          res.status(200).json(remove);
+      })
+      .catch(error => {
+        res.status(500).json({message: 'Error'});
       })
   })
 
